@@ -179,15 +179,6 @@
   height: 38px;
 }
 
-.card__image-wrapper {
-  position: relative;
-  background-image: url("../images/image_car.png");
-  background-size: cover;
-  background-position: center;
-  width: 100%;
-  height: var(--image-height);
-}
-
 .card__label {
   font-family: var(--font-family-accent);
   font-weight: var(--font-weight-accent);
@@ -266,6 +257,15 @@
   height: var(--image-height);
   overflow: hidden;
 }
+
+/*.card__image-wrapper {
+  position: relative;
+  background-image: url("../images/image_car.png");
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: var(--image-height);
+}*/
 
 .card__image {
   width: 100%;
