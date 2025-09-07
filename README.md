@@ -1,1 +1,1 @@
-https://shutenkovika.github.io/zakrivayuschiy-teg-f/index.html
+https://github.com/shutenkovika/zakrivayuschiy-teg-f
