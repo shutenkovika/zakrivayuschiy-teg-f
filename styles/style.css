@@ -15,21 +15,25 @@
   min-block-size: 100dvb;
   max-inline-size: 1440px;
   font-family: var(--font-family-main);
-  font-variation-settings: "wght" var(----font-weight-main-text);
+  font-variation-settings: "wght" var(--font-weight-main-text);
   background-image: var(--bg-gradient);
   background-attachment: fixed;
   background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /*Header*/
 
 .content-block {
-  width: var(--width);
+  max-width: var(--width);
+  margin: 0 auto;
   background-color: var(--background-color);
 }
 
 .header {
-  margin: 98px auto 96px;
+  margin: 98px auto 96px auto;
   min-height: 368px;
   border: 3px solid var(--accent-color);
 }
@@ -59,11 +63,17 @@
 
 /*Main, cards*/
 
+.main-container {
+  display: grid;
+  grid-template-columns: auto;
+  gap: 50px;
+}
+
 .card-section {
   display: grid;
   grid-template-columns: 1fr;
   width: var(--width);
-  margin: 0 auto 49px;
+
   border: 2px solid var(--accent-color);
 }
 
@@ -81,6 +91,13 @@
 
 .card_description {
   padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.card_im-here .card_description {
+  padding-bottom: 20px;
 }
 
 .card-text {
@@ -88,11 +105,6 @@
   font-weight: var(--font-weight-main-text);
   font-size: var(--card-title-size);
   color: var(--title-color);
-}
-
-/* Базовые стили для всех карточек */
-.card_description .text-about {
-  padding-top: 25px;
 }
 
 .card__controls {
@@ -103,75 +115,6 @@
   align-items: center;
   justify-self: end;
   padding: 0 25px 25px;
-}
-
-/* Группируем общие стили */
-.card_sprint-preparing .card_description .text-about,
-.card_sprint-clean-slate .card_description .text-about,
-.card_sprint-what-if .card_description .text-about,
-.card_sprint-ideal .card_description .text-about,
-.card_sprint-who-is-near .card_description .text-about,
-.card_sprint-workarounds .card_description .text-about,
-.card_im-here .card_description .text-about {
-  padding-top: 30px;
-}
-
-.card_sprint-preparing .card__controls,
-.card_sprint-clean-slate .card__controls,
-.card_sprint-what-if .card__controls,
-.card_sprint-ideal .card__controls,
-.card_sprint-who-is-near .card__controls,
-.card_sprint-workarounds .card__controls,
-.card_third-sprint-hands-are-down .card__controls,
-.card_im-here .card__controls {
-  padding-top: 0;
-  padding-bottom: 25px;
-}
-
-/* Специфичные стили для отдельных карточек */
-.card_sprint-preparing .card_description .text-about,
-.card_sprint-who-is-near .card_description .text-about,
-.card_sprint-workarounds .card_description .text-about,
-.card_im-here .card_description .text-about {
-  padding-bottom: 0;
-}
-
-.card_sprint-preparing .card__controls {
-  padding-bottom: 29px;
-}
-
-.card_sprint-what-if .card_description,
-.card_sprint-ideal .card_description {
-  padding-top: 30px;
-  padding-bottom: 25px;
-}
-
-.card_sprint-who-is-near .card_description {
-  padding-top: 30px;
-  padding-bottom: 43px;
-}
-
-.card_sprint-who-is-near .card__controls {
-  padding-bottom: 26px;
-}
-
-.card_sprint-workarounds .card_description,
-.card_third-sprint-hands-are-down .card_description,
-.card_im-here .card_description {
-  padding-top: 30px;
-  padding-bottom: 23px;
-}
-
-.card_sprint-workarounds .card__controls,
-.card_third-sprint-hands-are-down .card__controls,
-.card_im-here .card__controls {
-  padding-top: 1px;
-  padding-bottom: 26px;
-}
-
-.card_third-sprint-hands-are-down .card_description .text-about {
-  padding-top: 50px;
-  padding-bottom: 0;
 }
 
 .card__like-button {
@@ -187,67 +130,94 @@
   top: 25px;
   right: 25px;
   z-index: 2;
+  text-shadow: -1px -1px 0 var(--text-stroke-color),
+    1px -1px 0 var(--text-stroke-color), -1px 1px 0 var(--text-stroke-color),
+    1px 1px 0 var(--text-stroke-color);
 
   @supports (-webkit-text-stroke: 1px var(--text-stroke-color)) {
     -webkit-text-stroke: 1px var(--text-stroke-color);
     -webkit-text-fill-color: transparent;
+    text-shadow: none;
     opacity: 50%;
   }
 }
 
 /* Стили для содержимого модального окна */
+
 .modal {
+  width: 353px;
   background-color: var(--background-color);
   border: 2px solid var(--title-color);
   box-sizing: border-box;
-  width: 353px;
-  height: 191px;
   padding: 30px;
 }
 
-.modal[open]::backdrop {
-  background-color: var(--backdrop-color);
+.modal p {
+  margin: 0;
 }
 
 .modal__content {
-  display: grid;
-  grid-template-rows: 1fr auto;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   gap: 30px;
   height: 100%;
 }
 
 .save-modal {
   display: grid;
+  grid-template-columns: 1fr auto;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.modal[open]::backdrop {
+  background-color: var(--backdrop-color);
+}
+
+/*.save-modal {
+  display: grid;
   grid-template-columns: auto 1fr;
   gap: 20px;
   align-items: center;
-}
+}*/
 
 .modal__floppy-icon {
   width: 39px;
   height: 39px;
   fill: var(--text-color);
 }
-/* Или другой размер по макету */
+
+.save-modal p.button__text {
+  text-align: left;
+  text-transform: uppercase;
+  line-height: 150%;
+}
+
 .modal__text {
   font-family: var(--font-family-main);
   font-weight: var(--font-weight-main-text);
   font-size: 18px;
   color: var(--text-color);
-  text-align: center;
 }
 
 /* Стили для кнопки "ОК" */
 .modal__ok-button {
-  max-width: 293px;
+  max-width: 100%;
   height: 38px;
   padding: 7px 0;
+  text-transform: uppercase;
 }
 
-.modal .modal__content .button__text {
+/*.modal .modal__content .button__text {
   line-height: 1.5;
-  text-align: left;
+  text-align: center;
 }
+
+.modal__ok-button p.button__text {
+  text-align: center;
+}*/
 
 /* Фильтры */
 
@@ -258,15 +228,6 @@
   overflow: hidden;
 }
 
-/*.card__image-wrapper {
-  position: relative;
-  background-image: url("../images/image_car.png");
-  background-size: cover;
-  background-position: center;
-  width: 100%;
-  height: var(--image-height);
-}*/
-
 .card__image {
   width: 100%;
   height: 100%;
@@ -274,35 +235,35 @@
   object-position: center;
 }
 
-.card__image-wrapper_sprint-preparing .card__image {
+.filter-grayscale {
   filter: grayscale(0.8);
 }
 
-.card__image-wrapper_sprint-clean-slate .card__image {
+.filter-contrast {
   filter: contrast(1.5);
 }
 
-.card__image-wrapper_sprint-what-if .card__image {
+.filter-sepia {
   filter: sepia(0.7);
 }
 
-.card__image-wrapper_sprint-ideal .card__image {
+.filter-blur {
   filter: blur(1.5px);
 }
 
-.card__image-wrapper_sprint-who-is-near .card__image {
+.filter-brightness {
   filter: brightness(2.5);
 }
 
-.card__image-wrapper_sprint-workarounds .card__image {
+.filter-hue-rotate {
   filter: hue-rotate(90deg);
 }
 
-.card__image-wrapper_sprint-hands-are-down .card__image {
+.filter-grayscale-blur {
   filter: grayscale(1) blur(1px);
 }
 
-.card__image-wrapper_im-here .card__image {
+.filter-saturate-hue {
   filter: saturate(1.5) hue-rotate(15deg);
 }
 
@@ -464,7 +425,7 @@
 .like-icon.is-liked .contour {
   fill: var(--animation-fill-color);
   transition-delay: 0.06s;
-  transition-duration: 0.1s;
+  transition-duration: 0.3s;
 }
 
 .like-icon.is-liked .heart {
@@ -477,73 +438,54 @@
 
 @media (width <= 375px) {
   .header {
-    margin: 100px auto 98px;
-    min-height: 328px;
+    margin: 100px auto 60px;
   }
 
   .header__elements {
     padding: var(--ht-padding) 0 0;
     text-align: center;
   }
-
-  .card-section {
-    height: 100%;
-    margin-bottom: 50px;
+  .main-container {
+    gap: 49px;
   }
 
-  .card-text {
-    padding: 0;
+  .card_description {
+    padding: 25px 25px 20px 25px;
+    gap: 25px;
   }
 
-  .text_main {
-    padding-top: 10px;
-    padding-bottom: 20px;
+  .card__controls {
+    padding: 0 25px 24px;
   }
 
-  /* Только уникальные стили для мобильной версии */
-  .card_sprint-clean-slate .card_description .text_main {
-    padding-top: 8px;
-  }
-
-  .card_sprint-what-if .card_description .text_main {
-    padding-top: 2px;
-  }
-
-  .card_sprint-ideal .card_description .text_main {
-    padding-top: 3px;
-  }
-
-  .card_sprint-who-is-near .card_description .text_main,
-  .card_sprint-workarounds .card_description .text_main,
-  .card_third-sprint-hands-are-down .card_description .text_main,
-  .card_im-here .card_description .text_main {
-    padding-top: 1px;
+  .card_im-here .card_description {
+    gap: 18px;
     padding-bottom: 0;
   }
 
-  /* Уникальные стили */
-  .card_sprint-preparing .card_description .text_about {
-    padding-bottom: 40px;
+  .card_im-here .card__controls {
+    padding-top: 0;
   }
 
-  .card_sprint-preparing .card_description {
-    padding-bottom: 42px;
+  .modal {
+    margin: 170px 17px;
+    max-width: 341px;
+    padding: 30px 40px;
   }
 
-  .card_sprint-preparing .card__controls {
-    padding-bottom: 29px;
+  .modal__content {
+    gap: 15px;
   }
 
-  .card_sprint-clean-slate .card__controls {
-    padding-bottom: 24px;
+  .save-modal {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
   }
 
-  .card_sprint-what-if .card_description .text-about {
-    padding-top: 27px;
-  }
-
-  .card_third-sprint-hands-are-down .card_description .text-about {
-    padding-top: 50px;
+  .save-button__icon {
+    width: 28px;
+    height: 28px;
   }
 
   /* Кнопка сохранить */
@@ -552,10 +494,5 @@
     flex-direction: column;
     inline-size: 306px;
     height: 84px;
-  }
-
-  .save-button__icon {
-    width: 28px;
-    height: 28px;
   }
 }
