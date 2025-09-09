@@ -22,6 +22,7 @@
   --image-height: clamp(23.1875rem, 16.0352rem + 30.5164vw, 43.5rem);
   --title-color: #000000;
   --ht-padding: clamp(7.625rem, 7.4489rem + 0.7512vw, 8.125rem);
+  --description-height: clamp(7.875rem, -Infinityrem + Infinityvw, 15.75rem);
   --card-title-size: 18px;
   --button-text-size: 14px;
   --text-stroke-color: #ffffff;
